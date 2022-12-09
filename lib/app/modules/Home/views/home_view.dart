@@ -121,6 +121,27 @@ class HomeView extends GetView<HomeController> {
 
                         }
                       ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.PHOTO_DETAILS);
+                  //     debugPrint("Selected index ${index.toString()}");
+                  //     Get.find<PhotoDetailsController>().sliderIndex.value =
+                  //         index;
+                  //     controller.inValue.value =
+                  //     controller.photoList.value[index].urls!.small!;
+                  //     // Get.find<PhotoDetailsController>().slider_index.value=index;
+                  //   },
+                  //   child: Hero(
+                  //     tag: controller.photoList.value[index].id!,
+                  //     // child: FadeInImage.assetNetwork(
+                  //     //   fadeInCurve: Curves.linear,
+                  //     //   fadeInDuration: Duration(seconds: 4),
+                  //     //   placeholder: 'assets/loading.gif',
+                  //     //   image: controller.photoList.value[index].urls!.small!,
+                  //     child: CachedNetworkImage(
+                  //       imageUrl: controller.photoList.value[index].urls!.small!,),
+                  //   ),
+                  // ),
                 );
                 //  return Text("${controller.photoList[index].id}");
               },

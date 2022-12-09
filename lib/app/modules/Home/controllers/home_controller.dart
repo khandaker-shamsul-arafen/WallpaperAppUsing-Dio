@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio_http/models/data_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/ApiCall/controllers/api_call_controller.dart';
@@ -59,7 +60,7 @@ class HomeController extends GetxController {
     String url = ApiString.baseUrl + apiEndpoints.endPoints(count.value);
     debugPrint("Url:${url}");
     // String url = ApiString.baseUrl;
-
+//EasyLoading.show(status: "Loading");
     final response = await apiCall.get(url);
     // debugPrint("Url:${response.data}");
     // DataModel data = dataModelFromJson(response.toString());
@@ -82,6 +83,7 @@ class HomeController extends GetxController {
       Get.snackbar('Error Loading data',
           'Server responded: ${response.statusCode}:${response.reasonPhrase.toString()}');
     }
+  //  EasyLoading.dismiss();
 
     // final response = await http.get(Uri.parse(
     //     "https://api.unsplash.com/photos/?client_id=QZEpfuYw05jBWVy0wcfxAlg7l0v9V5rtaZvpVIxP0BQ;&page=$count&per_page=100"));
