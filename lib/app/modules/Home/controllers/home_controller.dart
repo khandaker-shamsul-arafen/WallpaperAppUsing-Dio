@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio_http/models/data_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
@@ -60,7 +61,9 @@ class HomeController extends GetxController {
     String url = ApiString.baseUrl + apiEndpoints.endPoints(count.value);
     debugPrint("Url:${url}");
     // String url = ApiString.baseUrl;
-EasyLoading.show(status: "Loading");
+    EasyLoading.show(status: "Loading",);
+EasyLoadingStyle.light;
+
 
     final response = await apiCall.get(url);
     // debugPrint("Url:${response.data}");

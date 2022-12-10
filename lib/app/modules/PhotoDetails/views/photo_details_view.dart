@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
@@ -271,46 +272,40 @@ class PhotoDetailsView extends GetView<PhotoDetailsController> {
               shape: BoxShape.circle,
               color: Color(0xFF352825),
             ),
-            child: IconButton(
+            child:  IconButton(
               onPressed: () async {
-                // var dio = Dio();
-                ProgressDialog pd = ProgressDialog(context: context);
-                pd.show(
-                  max: 100,
-                  msg: 'Preparing Download...',
-                  progressType: ProgressType.valuable,
-                );
+                 var dio = Dio();
+
+
                 //await Future.delayed(Duration(milliseconds: 1000));
-                for (int i = 0; i <= 100; i++) {
-                  /// You can indicate here that the download has started.
-                   await Future.delayed(const Duration(milliseconds: 400));
-                 pd.update(msg: 'File Downloading...', value: i);
-                  i++;
-                 await Future.delayed(const Duration(milliseconds: 200));
-                }
-                //
+
+
                 // await dio.download(
-                //   contro.photoList.value[controller.slider_index.value].links!
+                //   contro.photoList.value[controller.sliderIndex.value].links!
                 //       .download!,
                 //   'Internal storage/pictures',
                 //   onReceiveProgress: (rec, total) async {
                 //     int progress = (((rec / total) * 100).toInt());
                 //
-                //     await Future.delayed(Duration(milliseconds: 400));
-                //     pd.update(value: progress);
+                //   //  await Future.delayed(Duration(milliseconds: 400));
+                //    // pd.update(value: progress);
                 //   //  pd.update(msg: 'File Downloading...', value: progress);
                 //
-                //     pd.close();
+                //
                 //   },
                 // );
-
+                 EasyLoading.showToast('Download info collect');
+                 EasyLoading.showProgress(0.9, status: 'downloading...');
                 var imageId = await ImageDownloader.downloadImage(contro.photoList.value[controller.sliderIndex.value].links!
-                   .download!);
-               if (imageId == null) {
-                 return;
-               }
-                 debugPrint('Hellow${imageId}');
-               var path = await ImageDownloader.findPath(imageId);
+                    .download!);
+
+
+                 EasyLoading.showSuccess('Great Success!');
+                if (imageId == null) {
+                  return;
+                }
+                debugPrint('Hellow${imageId}');
+                var path = await ImageDownloader.findPath(imageId);
                 // final snackBar = SnackBar(
                 //   content:  Column(
                 //     children: [
@@ -326,17 +321,85 @@ class PhotoDetailsView extends GetView<PhotoDetailsController> {
                 //     },
                 //   ),
                 // );
-               // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Succesfully")));
+                // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Succesfully")));
 
-                 await GallerySaver.saveImage(contro.photoList.value[controller.sliderIndex.value].links!
+                await GallerySaver.saveImage(contro.photoList.value[controller.sliderIndex.value].links!
                     .download!,toDcim: true);
-                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Successfully")));
+              //   Future.delayed(Duration(milliseconds: 100));
 
-               // await  Share.shareXFiles([XFile('${path}')], text: 'Great picture'
+              //  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Successfully")));
+
+                // await  Share.shareXFiles([XFile('${path}')], text: 'Great picture'
               },
               icon: const Icon(Icons.download),
               color: Colors.white,
             ),
+            // child: IconButton(
+            //   onPressed: () async {
+            //     // var dio = Dio();
+            //     ProgressDialog pd = ProgressDialog(context: context);
+            //     pd.show(
+            //       max: 100,
+            //       msg: 'Preparing Download...',
+            //       progressType: ProgressType.valuable,
+            //     );
+            //     //await Future.delayed(Duration(milliseconds: 1000));
+            //     for (int i = 0; i <= 100; i++) {
+            //       /// You can indicate here that the download has started.
+            //        await Future.delayed(const Duration(milliseconds: 400));
+            //      pd.update(msg: 'File Downloading...', value: i);
+            //       i++;
+            //      await Future.delayed(const Duration(milliseconds: 200));
+            //     }
+            //     //
+            //     // await dio.download(
+            //     //   contro.photoList.value[controller.slider_index.value].links!
+            //     //       .download!,
+            //     //   'Internal storage/pictures',
+            //     //   onReceiveProgress: (rec, total) async {
+            //     //     int progress = (((rec / total) * 100).toInt());
+            //     //
+            //     //     await Future.delayed(Duration(milliseconds: 400));
+            //     //     pd.update(value: progress);
+            //     //   //  pd.update(msg: 'File Downloading...', value: progress);
+            //     //
+            //     //     pd.close();
+            //     //   },
+            //     // );
+            //
+            //     var imageId = await ImageDownloader.downloadImage(contro.photoList.value[controller.sliderIndex.value].links!
+            //        .download!);
+            //    if (imageId == null) {
+            //      return;
+            //    }
+            //      debugPrint('Hellow${imageId}');
+            //    var path = await ImageDownloader.findPath(imageId);
+            //     // final snackBar = SnackBar(
+            //     //   content:  Column(
+            //     //     children: [
+            //     //       Text(controller.downloadMessage.value??'',style: Theme.of(context).textTheme.headlineMedium,),
+            //     //       LinearProgressIndicator(value: controller.parcentage.value.toDouble(),),
+            //     //     ],
+            //     //   ),
+            //     //   backgroundColor: (Colors.black12),
+            //     //   action: SnackBarAction(
+            //     //     label: 'dismiss',
+            //     //     onPressed: () {
+            //     //
+            //     //     },
+            //     //   ),
+            //     // );
+            //    // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Succesfully")));
+            //
+            //      await GallerySaver.saveImage(contro.photoList.value[controller.sliderIndex.value].links!
+            //         .download!,toDcim: true);
+            //      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Download Successfully")));
+            //
+            //    // await  Share.shareXFiles([XFile('${path}')], text: 'Great picture'
+            //   },
+            //   icon: const Icon(Icons.download),
+            //   color: Colors.white,
+            // ),
           ),
         ),
       ]);
