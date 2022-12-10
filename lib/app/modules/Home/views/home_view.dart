@@ -85,63 +85,63 @@ class HomeView extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(12),
                   child:
 
-                      CupertinoSegmentedControl<EasyLoadingStyle>(
-                        onValueChanged: (value) {
-                          EasyLoading.instance.loadingStyle = value;
-                        },
-                          borderColor: Colors.white,
-                        children:{
-                          EasyLoadingStyle.dark: Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child:    GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.PHOTO_DETAILS);
-                                debugPrint("Selected index ${index.toString()}");
-                                Get.find<PhotoDetailsController>().sliderIndex.value =
-                                    index;
-                                controller.inValue.value =
-                                controller.photoList.value[index].urls!.small!;
-                                // Get.find<PhotoDetailsController>().slider_index.value=index;
-                              },
-                              child: Hero(
-                                tag: controller.photoList.value[index].id!,
-                                // child: FadeInImage.assetNetwork(
-                                //   fadeInCurve: Curves.linear,
-                                //   fadeInDuration: Duration(seconds: 4),
-                                //   placeholder: 'assets/loading.gif',
-                                //   image: controller.photoList.value[index].urls!.small!,
-                                  child: CachedNetworkImage(
-                                    imageUrl: controller.photoList.value[index].urls!.small!,),
-                                ),
-                            ),
-                            ),
-
-
-                         // ),
-
-                        }
-                      ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Get.toNamed(Routes.PHOTO_DETAILS);
-                  //     debugPrint("Selected index ${index.toString()}");
-                  //     Get.find<PhotoDetailsController>().sliderIndex.value =
-                  //         index;
-                  //     controller.inValue.value =
-                  //     controller.photoList.value[index].urls!.small!;
-                  //     // Get.find<PhotoDetailsController>().slider_index.value=index;
-                  //   },
-                  //   child: Hero(
-                  //     tag: controller.photoList.value[index].id!,
-                  //     // child: FadeInImage.assetNetwork(
-                  //     //   fadeInCurve: Curves.linear,
-                  //     //   fadeInDuration: Duration(seconds: 4),
-                  //     //   placeholder: 'assets/loading.gif',
-                  //     //   image: controller.photoList.value[index].urls!.small!,
-                  //     child: CachedNetworkImage(
-                  //       imageUrl: controller.photoList.value[index].urls!.small!,),
-                  //   ),
-                  // ),
+                      // CupertinoSegmentedControl<EasyLoadingStyle>(
+                      //   onValueChanged: (value) {
+                      //     EasyLoading.instance.loadingStyle = value;
+                      //   },
+                      //     borderColor: Colors.white,
+                      //   children:{
+                      //     EasyLoadingStyle.dark: Padding(
+                      //       padding: const EdgeInsets.all(0.0),
+                      //       child:    GestureDetector(
+                      //         onTap: () {
+                      //           Get.toNamed(Routes.PHOTO_DETAILS);
+                      //           debugPrint("Selected index ${index.toString()}");
+                      //           Get.find<PhotoDetailsController>().sliderIndex.value =
+                      //               index;
+                      //           controller.inValue.value =
+                      //           controller.photoList.value[index].urls!.small!;
+                      //           // Get.find<PhotoDetailsController>().slider_index.value=index;
+                      //         },
+                      //         child: Hero(
+                      //           tag: controller.photoList.value[index].id!,
+                      //           // child: FadeInImage.assetNetwork(
+                      //           //   fadeInCurve: Curves.linear,
+                      //           //   fadeInDuration: Duration(seconds: 4),
+                      //           //   placeholder: 'assets/loading.gif',
+                      //           //   image: controller.photoList.value[index].urls!.small!,
+                      //             child: CachedNetworkImage(
+                      //               imageUrl: controller.photoList.value[index].urls!.small!,),
+                      //           ),
+                      //       ),
+                      //       ),
+                      //
+                      //
+                      //    // ),
+                      //
+                      //   }
+                      // ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.PHOTO_DETAILS);
+                      debugPrint("Selected index ${index.toString()}");
+                      Get.find<PhotoDetailsController>().sliderIndex.value =
+                          index;
+                      controller.inValue.value =
+                      controller.photoList.value[index].urls!.small!;
+                      // Get.find<PhotoDetailsController>().slider_index.value=index;
+                    },
+                    child: Hero(
+                      tag: controller.photoList.value[index].id!,
+                      // child: FadeInImage.assetNetwork(
+                      //   fadeInCurve: Curves.linear,
+                      //   fadeInDuration: Duration(seconds: 4),
+                      //   placeholder: 'assets/loading.gif',
+                      //   image: controller.photoList.value[index].urls!.small!,
+                      child: CachedNetworkImage(
+                        imageUrl: controller.photoList.value[index].urls!.small!,),
+                    ),
+                  ),
                 );
                 //  return Text("${controller.photoList[index].id}");
               },
